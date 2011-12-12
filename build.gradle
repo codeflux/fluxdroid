@@ -12,12 +12,24 @@ targetCompatibility = compatibilityVersion
 
 repositories {
     mavenCentral()
+    maven {
+        url 'http://maven.springframework.org/milestone'
+    }
 }
+
+def springAndroidVersion = '1.0.0.M4'
+def jacksonMapperVersion = '1.8.5'
 
 def junitVersion = '4.10'
 def mockitoVersion = '1.8.5'
 
 dependencies {
+    compile("org.springframework.android:spring-android-rest-template:$springAndroidVersion") {
+        provided = true
+    }
+    compile("org.codehaus.jackson:jackson-mapper-asl:$jacksonMapperVersion") {
+        provided = true
+    }
     testCompile "junit:junit:$junitVersion"
     testCompile "org.mockito:mockito-all:$mockitoVersion"
 }
