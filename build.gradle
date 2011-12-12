@@ -1,0 +1,61 @@
+description = 'CodeFlux Common Android Stuff'
+group = 'com.teamcodeflux.android'
+version = '0.1.0.BUILD-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven'
+
+def compatibilityVersion = '1.6'
+sourceCompatibility = compatibilityVersion
+targetCompatibility = compatibilityVersion
+
+repositories {
+    mavenCentral()
+}
+
+def junitVersion = '4.10'
+def mockitoVersion = '1.8.5'
+
+dependencies {
+    testCompile "junit:junit:$junitVersion"
+    testCompile "org.mockito:mockito-all:$mockitoVersion"
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+    project {
+        javaVersion = compatibilityVersion
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: 'file:///maven/snapshot')
+            pom.artifactId = 'fluxdroid'
+        }
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+assemble.dependsOn clean
+
+defaultTasks 'assemble'
