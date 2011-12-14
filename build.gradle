@@ -19,6 +19,7 @@ repositories {
 
 configurations {
     provided
+    provided.extendsFrom(compile)
 }
 
 sourceSets {
@@ -50,6 +51,8 @@ idea {
     module {
         downloadSources = true
         downloadJavadoc = true
+
+        scopes.PROVIDED.plus += configurations.provided
     }
     project {
         javaVersion = compatibilityVersion
