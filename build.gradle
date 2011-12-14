@@ -17,6 +17,20 @@ repositories {
     }
 }
 
+configurations {
+    provided
+}
+
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+    }
+    test {
+        compileClasspath += configurations.provided
+        runtimeClasspath += configurations.provided
+    }
+}
+
 def androidVersion = '2.1.2'
 def springAndroidVersion = '1.0.0.M4'
 def jacksonMapperVersion = '1.8.5'
@@ -25,15 +39,9 @@ def junitVersion = '4.10'
 def mockitoVersion = '1.8.5'
 
 dependencies {
-    compile("com.google.android:android:$androidVersion") {
-        provided = true
-    }
-    compile("org.springframework.android:spring-android-rest-template:$springAndroidVersion") {
-        provided = true
-    }
-    compile("org.codehaus.jackson:jackson-mapper-asl:$jacksonMapperVersion") {
-        provided = true
-    }
+    provided "com.google.android:android:$androidVersion"
+    provided "org.springframework.android:spring-android-rest-template:$springAndroidVersion"
+    provided "org.codehaus.jackson:jackson-mapper-asl:$jacksonMapperVersion"
     testCompile "junit:junit:$junitVersion"
     testCompile "org.mockito:mockito-all:$mockitoVersion"
 }
