@@ -1,6 +1,6 @@
 description = 'CodeFlux Common Android Stuff'
 group = 'com.teamcodeflux.android'
-version = '0.2.0.BUILD-SNAPSHOT'
+version = '0.2.0'
 
 apply plugin: 'java'
 apply plugin: 'idea'
@@ -62,7 +62,7 @@ idea {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: 'file:///maven/snapshot')
+            repository(url: 'file:///maven/release')
             pom.artifactId = 'fluxdroid'
         }
     }
