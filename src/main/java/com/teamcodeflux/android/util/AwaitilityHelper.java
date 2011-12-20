@@ -16,6 +16,7 @@
 
 package com.teamcodeflux.android.util;
 
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.concurrent.Callable;
@@ -34,6 +35,18 @@ public final class AwaitilityHelper {
                 }
 
                 return view.getText().length() > 0;
+            }
+        };
+    }
+
+    public static Callable<Boolean> notEmpty(final Spinner spinner) {
+        return new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                if (spinner == null) {
+                    throw new IllegalArgumentException("Spinner should not be null!");
+                }
+                return spinner.getCount() > 0;
             }
         };
     }
