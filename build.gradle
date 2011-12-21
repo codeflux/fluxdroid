@@ -15,6 +15,9 @@ repositories {
     maven {
         url 'http://maven.springframework.org/milestone'
     }
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
 }
 
 configurations {
@@ -35,7 +38,8 @@ sourceSets {
 def androidVersion = '2.1.2'
 def springAndroidVersion = '1.0.0.M4'
 def jacksonMapperVersion = '1.8.5'
-
+def androidAnnotationsVersion = '2.3-SNAPSHOT'
+def robolectricVersion = '1.0'
 def junitVersion = '4.10'
 def mockitoVersion = '1.8.5'
 
@@ -43,7 +47,9 @@ dependencies {
     provided "com.google.android:android:$androidVersion"
     provided "org.springframework.android:spring-android-rest-template:$springAndroidVersion"
     provided "org.codehaus.jackson:jackson-mapper-asl:$jacksonMapperVersion"
-    testCompile "junit:junit:$junitVersion"
+    provided "com.googlecode.androidannotations:androidannotations:$androidAnnotationsVersion:api"
+    provided "com.pivotallabs:robolectric:$robolectricVersion"
+    provided "junit:junit:$junitVersion"
     testCompile "org.mockito:mockito-all:$mockitoVersion"
 }
 
