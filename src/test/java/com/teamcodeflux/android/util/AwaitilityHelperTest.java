@@ -16,6 +16,7 @@
 
 package com.teamcodeflux.android.util;
 
+import android.widget.Spinner;
 import android.widget.TextView;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,9 +29,13 @@ import static org.mockito.BDDMockito.*;
 public class AwaitilityHelperTest {
     private TextView textView;
 
+    private Spinner spinner;
+
     @Before
     public void setUp() {
         textView = mock(TextView.class);
+
+        spinner = mock(Spinner.class);
     }
 
     @Test
@@ -53,5 +58,25 @@ public class AwaitilityHelperTest {
         given(textView.getText()).willReturn(null);
 
         assertThat(notBlank(textView).call(), equalTo(false));
+    }
+
+    @Test
+    public void shouldReturnTrueIfSpinnerHasContents() throws Exception {
+        given(spinner.getCount()).willReturn(10);
+
+        assertThat(notEmpty(spinner).call(), equalTo(true));
+    }
+
+    @Test
+    public void shouldReturnFalseIfSpinnerDoesNotHaveContents() throws Exception {
+        given(spinner.getCount()).willReturn(0);
+
+        assertThat(notEmpty(spinner).call(), equalTo(false));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shoudThrowIllegalArgumentExceptionIfSpinnerIsNull() throws Exception {
+        spinner = null;
+        assertThat(notEmpty(spinner).call(), equalTo(false));
     }
 }
