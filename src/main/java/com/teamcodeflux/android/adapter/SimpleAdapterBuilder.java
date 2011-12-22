@@ -19,6 +19,15 @@ package com.teamcodeflux.android.adapter;
 import android.widget.SimpleAdapter;
 import com.teamcodeflux.android.util.Builder;
 
-public interface SimpleAdapterBuilder extends Builder<SimpleAdapter> {
+import java.util.List;
+import java.util.Map;
 
+public interface SimpleAdapterBuilder<T> extends Builder<SimpleAdapter> {
+    List<? extends Map<String, ?>> data(List<T> data);
+
+    int resource();
+
+    String[] from();
+
+    int[] to();
 }
