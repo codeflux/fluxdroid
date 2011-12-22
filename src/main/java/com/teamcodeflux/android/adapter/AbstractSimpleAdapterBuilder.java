@@ -22,7 +22,7 @@ import android.widget.SimpleAdapter;
 import java.util.List;
 import java.util.Map;
 
-public abstract class AbstractSimpleAdapterBuilder<T> implements SimpleAdapterBuilder {
+public abstract class AbstractSimpleAdapterBuilder<T> implements SimpleAdapterBuilder<T> {
     protected Context context;
     protected List<T> data;
 
@@ -36,8 +36,4 @@ public abstract class AbstractSimpleAdapterBuilder<T> implements SimpleAdapterBu
         return new SimpleAdapter(context, data(data), resource(), from(), to());
     }
 
-    protected abstract List<? extends Map<String, ?>> data(List<T> data);
-    protected abstract int resource();
-    protected abstract String[] from();
-    protected abstract int[] to();
 }
