@@ -23,8 +23,8 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class AbstractSimpleAdapterBuilder<T> implements SimpleAdapterBuilder {
-    private Context context;
-    private List<T> data;
+    protected Context context;
+    protected List<T> data;
 
     public AbstractSimpleAdapterBuilder(final Context context, final List<T> data) {
         this.context = context;
