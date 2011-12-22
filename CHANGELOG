@@ -1,0 +1,17 @@
+# FluxDroid Changelog
+
+## 2011-12-22: 0.3.0 RELEASE
+
+* AwaitilityHelper to await for spinner values.
+* FakeExecutor and RobolectricAndroidAnnotationsTestRunner to test @Background in Robolectric with AndroidAnnotations 2.3 (SNAPSHOT).
+* Allow extension of SimpleAdapterBuilder to support subclasses of SimpleAdapter.
+
+## 2011-12-15: 0.2.0 RELEASE
+
+* Builder interface and SimpleAdapterBuilder to help build instances of SimpleAdapter.
+* AwaitilityHelper to await for TextView's whose String values are updated.
+
+## 2011-12-12: 0.1.0 RELEASE
+
+* RestTemplateFactory for creating instances of Spring Android's RestTemplate.
+* Callback interface and Result DTO to enable externalizing AsyncTasks.
