@@ -17,8 +17,11 @@
 package com.teamcodeflux.android;
 
 import com.googlecode.androidannotations.api.BackgroundExecutor;
+import com.teamcodeflux.android.shadows.ShadowSimpleAdapter;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.junit.runners.model.InitializationError;
+
+import static com.xtremelabs.robolectric.Robolectric.*;
 
 public class RobolectricAndroidAnnotationsTestRunner extends RobolectricTestRunner {
     public RobolectricAndroidAnnotationsTestRunner(Class<?> testClass) throws InitializationError {
@@ -29,5 +32,11 @@ public class RobolectricAndroidAnnotationsTestRunner extends RobolectricTestRunn
     public void prepareTest(Object test) {
         super.prepareTest(test);
         BackgroundExecutor.setExecutor(new FakeExecutor());
+    }
+
+    @Override
+    protected void bindShadowClasses() {
+        super.bindShadowClasses();
+        bindShadowClass(ShadowSimpleAdapter.class);
     }
 }
