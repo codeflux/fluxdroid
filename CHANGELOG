@@ -1,5 +1,13 @@
 # FluxDroid Changelog
 
+## 2012-01-05: 0.4.0 RELEASE
+
+* ShadowSimpleAdapter for testing activities which uses SimpleAdapter.
+* Added ShadowSimpleAdapter to Shadow classes bound by custom RobolectricTestRunner.
+* Renamed RobolectricAndroidAnnotationsTestRunner to CodeFluxRobolectricTestRunner.
+* GestureLibraryFactory for getting instances of GestureLibrary.
+* GestureLibraryBuilder for building instances of GestureLibrary.
+
 ## 2011-12-22: 0.3.0 RELEASE
 
 * AwaitilityHelper to await for spinner values.
