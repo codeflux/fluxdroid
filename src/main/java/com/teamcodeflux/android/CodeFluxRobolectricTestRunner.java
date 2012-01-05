@@ -17,8 +17,8 @@
 package com.teamcodeflux.android;
 
 import com.googlecode.androidannotations.api.BackgroundExecutor;
-import com.teamcodeflux.android.shadows.ShadowSimpleAdapter;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
+import com.xtremelabs.robolectric.shadows.ShadowSimpleAdapter;
 import org.junit.runners.model.InitializationError;
 
 import static com.xtremelabs.robolectric.Robolectric.*;
