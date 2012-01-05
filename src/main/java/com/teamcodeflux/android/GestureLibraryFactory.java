@@ -7,6 +7,10 @@ import android.gesture.GestureOverlayView;
 public final class GestureLibraryFactory {
     private static GestureLibrary gestureLibrary;
 
+    private GestureLibraryFactory() throws IllegalAccessException {
+        throw new IllegalAccessException();
+    }
+
     public static GestureLibrary getGestureLibrary(final GestureOverlayView gestureOverlayView, final int resource) {
         if (gestureLibrary != null) {
             return gestureLibrary;
