@@ -1,5 +1,9 @@
 # FluxDroid Changelog
 
+## 2012-01-06: 0.4.1 RELEASE
+
+* Fixed 0.4.0 RELEASE
+
 ## 2012-01-05: 0.4.0 RELEASE
 
 * ShadowSimpleAdapter for testing activities which uses SimpleAdapter.
