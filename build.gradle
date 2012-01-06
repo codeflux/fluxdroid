@@ -6,9 +6,12 @@ version = '0.5.0-SNAPSHOT'
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'maven'
+apply plugin: 'signing'
 
 def artifact = 'fluxdroid'
 project.artifact = artifact
+
+def isReleaseVersion = !version.endsWith('SNAPSHOT')
 
 def compatibilityVersion = '1.6'
 sourceCompatibility = compatibilityVersion
@@ -72,8 +75,25 @@ idea {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: 'file:///maven/release')
+            //repository(url: 'file:///maven/release')
             pom.project(pomConfiguration)
+
+            beforeDeployment { deployment ->
+                signPom(deployment)
+            }
+
+            def repositoryUsername = project.hasProperty('sonatypeUsername') ? sonatypeUsername : ''
+            def repositoryPassword = project.hasProperty('sonatypePassword') ? sonatypePassword : ''
+
+            if (isReleaseVersion) {
+                repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2') {
+                    authentication(userName: repositoryUsername, password: repositoryPassword)
+                }
+            } else {
+                repository(url: 'https://oss.sonatype.org/content/repositories/snapshots') {
+                    authentication(userName: repositoryUsername, password: repositoryPassword)
+                }
+            }
         }
     }
 }
@@ -84,6 +104,12 @@ javadoc {
 
 jar {
     baseName = artifact
+}
+
+signing {
+    if (isReleaseVersion) {
+        sign configurations.archives
+    }
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
